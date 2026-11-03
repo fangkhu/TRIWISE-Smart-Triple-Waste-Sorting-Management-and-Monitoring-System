@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#08121a" />
+  <meta name="description" content="TRIWISE — simulasi web interaktif sistem sortir otomatis logam, plastik dan material lainnya. Tanpa hardware." />
+  <title>TRIWISE LAB — Smart Waste Sorting Simulator</title>
+  <link rel="stylesheet" href="./style.css" />
+  <script defer src="./script.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Navigasi">
+      <a class="brand" href="#simulator" aria-label="TRIWISE Lab, beranda">
+        <div class="brand-symbol" aria-hidden="true"><span>✦</span></div>
+        <span class="brand-copy"><strong>TRIWISE<span class="brand-dot">.</span></strong><small>SMART SORTING LAB</small></span>
+      </a>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="side-nav">
+        <a class="side-link active" href="#simulator"><span class="side-ico">◈</span> Simulator <span class="side-tiny">01</span></a>
+        <a class="side-link" href="#kontrol"><span class="side-ico">◉</span> Control center <span class="side-tiny">02</span></a>
+        <a class="side-link" href="#monitor"><span class="side-ico">▥</span> Sensor monitor <span class="side-tiny">03</span></a>
+        <a class="side-link" href="#aktivitas"><span class="side-ico">≡</span> Event log <span class="side-tiny">04</span></a>
+      </nav>
+      <div class="side-label" style="margin-top:33px">SYSTEM INFO</div>
+      <div class="side-system">
+        <div><span class="tiny-lamp"></span> Simulation environment</div>
+        <div><span class="meta-name">Controller</span><strong>Virtual engine</strong></div>
+        <div><span class="meta-name">Category</span><strong>3 waste types</strong></div>
+        <div><span class="meta-name">Actuator</span><strong>2 pushers</strong></div>
+        <div><span class="meta-name">Physical device</span><strong>Not connected</strong></div>
+      </div>
+      <div class="sidebar-bottom">
+        <div class="side-tip"><span class="tip-icon">✳</span><strong>LAB TIP</strong><p>Tambahkan material dan amati bagaimana sensor, pendorong, dan counter bekerja bersama.</p></div>
+        <div class="side-footer">TRIWISE • WEB SIMULATOR <span>v1.0</span></div>
+      </div>
+    </aside>
+
+    <main class="content" id="simulator">
+      <header class="topbar">
+        <div class="breadcrumbs">TRIWISE <span>/</span> PROJECT LAB <span>/</span> <strong>SIMULATOR</strong></div>
+        <div class="top-right"><span class="top-sim"><span class="live-dot"></span> SIMULATION ONLY</span><span class="top-version">WEB EDITION 1.0</span></div>
+      </header>
+      <section class="hero">
+        <div class="hero-copy"><div class="eyebrow"><span class="eyebrow-line"></span> INTERACTIVE ENGINEERING PLAYGROUND</div>
+          <h1>Sort smarter.<br /><span>Waste better.</span></h1>
+          <p>Eksplorasi sistem pemilahan sampah otomatis — dari sensor hingga wadah keluaran. Semua berjalan langsung di browser, tanpa perangkat fisik.</p>
+          <div class="hero-pills"><span>✦ 3 kategori</span><span>⤳ 2 aktuator</span><span>◉ Live counters</span></div>
+        </div>
+        <div class="hero-decoration" aria-hidden="true"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="orbit orbit-c"></div><div class="hero-core"><span>↻</span></div><span class="deco-small d1"></span><span class="deco-small d2"></span><span class="deco-small d3"></span></div>
+      </section>
+
+      <section class="metrics" aria-label="Hasil sortir">
+        <div class="metric metric-metal"><div class="metric-head"><span class="metric-icon">⬡</span><span class="metric-caption">METAL</span></div><div class="metric-value" id="count-metal">0</div><div class="metric-sub">Sampah logam <span class="metric-tick">↗</span></div></div>
+        <div class="metric metric-plastic"><div class="metric-head"><span class="metric-icon">▰</span><span class="metric-caption">PLASTIC</span></div><div class="metric-value" id="count-plastic">0</div><div class="metric-sub">Sampah plastik <span class="metric-tick">↗</span></div></div>
+        <div class="metric metric-other"><div class="metric-head"><span class="metric-icon">◇</span><span class="metric-caption">OTHER</span></div><div class="metric-value" id="count-other">0</div><div class="metric-sub">Material lainnya <span class="metric-tick">↗</span></div></div>
+        <div class="metric metric-total"><div class="metric-head"><span class="metric-icon">✳</span><span class="metric-caption">TOTAL SORTED</span></div><div class="metric-value" id="count-total">0</div><div class="metric-sub">Tersortir di keluaran <span class="metric-tick">↗</span></div></div>
+      </section>
+
+      <section class="workspace-grid">
+        <div class="stage-panel panel">
+          <div class="panel-heading"><div><div class="section-kicker">01 / SIMULATION SPACE</div><h2>Conveyor playground <span class="sparkle">✦</span></h2><p>Visualisasi tampak atas — urutan dan posisi mengikuti simulasi Python asli.</p></div><span class="runtime-pill" id="runtime-pill"><span class="state-dot"></span> IDLE</span></div>
+          <div class="stage-wrap">
+            <svg id="machine-svg" viewBox="0 0 1040 345" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Conveyor horizontal dari kiri ke kanan, stasiun klasifikasi, pendorong logam ke wadah atas, pendorong plastik ke wadah bawah, dan keluaran material lainnya ke kanan">
+              <defs>
+                <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.5" fill="#253949" /></pattern>
+                <linearGradient id="beltfill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#203746"/><stop offset="0.5" stop-color="#1c2e3c"/><stop offset="1" stop-color="#182b37"/></linearGradient>
+                <filter id="shadow"><feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000" flood-opacity=".35"/></filter>
+                <linearGradient id="shine" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".6"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+                <clipPath id="beltclip"><rect x="73" y="179" width="846" height="37" rx="3" /></clipPath>
+              </defs>
+              <rect width="1040" height="345" rx="14" fill="#0e202d"/>
+              <rect width="1040" height="345" rx="14" fill="url(#dots)"/>
+              <g opacity=".85"><text x="25" y="29" class="svg-tiny">TOP VIEW / SORTING LINE 01</text><text x="1014" y="29" text-anchor="end" class="svg-tiny">FLOW →</text></g>
+              <g class="stage-deco"><path d="M23 52H1018M23 319H1018" stroke="#294350" stroke-width="1" stroke-dasharray="3 7"/></g>
+              <!-- conveyor and rollers -->
+              <rect x="65" y="169" width="862" height="57" rx="23" fill="#496376" stroke="#78909c" stroke-width="2" filter="url(#shadow)"/>
+              <rect x="73" y="179" width="846" height="37" rx="4" fill="url(#beltfill)"/>
+              <g id="belt-moving" clip-path="url(#beltclip)"><g id="belt-stripes"></g></g>
+              <circle cx="89" cy="197" r="19" fill="none" stroke="#a4b6be" stroke-width="2" opacity=".6"/>
+              <circle cx="901" cy="197" r="19" fill="none" stroke="#a4b6be" stroke-width="2" opacity=".6"/>
+              <!-- sensors, classifier -->
+              <path d="M104 145V230" stroke="#65e7b2" stroke-width="1.5" stroke-dasharray="4 5" opacity=".75"/>
+              <rect id="sensor-entry-box" x="85" y="124" width="38" height="23" rx="6" fill="#143b3d" stroke="#62d9a8"/>
+              <text x="104" y="140" class="svg-label svg-mint" text-anchor="middle">S0</text>
+              <path d="M265 145V230" stroke="#ffd480" stroke-width="1.5" stroke-dasharray="4 5" opacity=".75"/>
+              <rect id="sensor-class-box" x="244" y="122" width="42" height="25" rx="6" fill="#4d3a1c" stroke="#f6c678"/>
+              <text x="265" y="139" class="svg-label svg-sun" text-anchor="middle">S1/2</text>
+              <text x="265" y="110" text-anchor="middle" class="svg-tiny">SENSOR GATE</text>
+              <!-- metal output -->
+              <path d="M465 170V113" stroke="#62c6f3" stroke-width="2" stroke-dasharray="5 6" opacity=".7"/>
+              <rect x="407" y="47" width="116" height="65" rx="13" fill="#143449" stroke="#60c7ff" stroke-width="1.7" />
+              <text x="465" y="72" text-anchor="middle" class="svg-bin-title">◈ METAL</text>
+              <text x="465" y="93" text-anchor="middle" class="svg-bin-small">OUTPUT / C1</text>
+              <rect id="pusher-metal" x="451" y="160" width="28" height="14" rx="4" fill="#6bb8d8" stroke="#9ae6ff" stroke-width="1.5" />
+              <text x="489" y="153" class="svg-tiny">P1</text>
+              <!-- plastic output -->
+              <path d="M677 226V282" stroke="#ffba79" stroke-width="2" stroke-dasharray="5 6" opacity=".7"/>
+              <rect x="615" y="282" width="124" height="57" rx="13" fill="#423020" stroke="#f7b66b" stroke-width="1.7" />
+              <text x="677" y="305" text-anchor="middle" class="svg-bin-title">▰ PLASTIC</text>
+              <text x="677" y="325" text-anchor="middle" class="svg-bin-small">OUTPUT / C2</text>
+              <rect id="pusher-plastic" x="663" y="223" width="28" height="14" rx="4" fill="#d99c67" stroke="#ffd09d" stroke-width="1.5" />
+              <text x="700" y="248" class="svg-tiny">P2</text>
+              <!-- other output -->
+              <path d="M919 197H932" stroke="#aebbc8" stroke-width="2.5" stroke-dasharray="4 3" />
+              <rect x="931" y="160" width="101" height="75" rx="13" fill="#283744" stroke="#9eafbb" stroke-width="1.7" />
+              <text x="982" y="184" text-anchor="middle" class="svg-bin-title">◇ OTHER</text>
+              <text x="982" y="202" text-anchor="middle" class="svg-bin-small">NO PUSHER</text>
+              <text x="982" y="220" text-anchor="middle" class="svg-bin-small">OUTPUT / C3</text>
+              <!-- step labels -->
+              <text x="104" y="245" class="svg-tiny" text-anchor="middle">ENTRY</text>
+              <text x="265" y="245" class="svg-tiny" text-anchor="middle">CLASSIFY</text>
+              <text x="465" y="245" class="svg-tiny" text-anchor="middle">PUSH 01</text>
+              <text x="677" y="166" class="svg-tiny" text-anchor="middle">PUSH 02</text>
+              <g id="active-object" visibility="hidden" filter="url(#shadow)">
+                <circle id="object-halo" cx="0" cy="0" r="21" fill="none" stroke="#66d3fa" stroke-width="2" opacity=".45"/>
+                <rect id="object-shape" x="-13" y="-13" width="26" height="26" rx="8" fill="#60c7ff" stroke="#c4eaff" stroke-width="2" />
+                <path d="M-4 -6 L5 -6 L9 0 L5 6 L-4 6 L-9 0 Z" fill="url(#shine)" opacity=".65"/>
+                <g id="object-badge"><rect x="-32" y="-43" width="64" height="20" rx="9" fill="#e8f7ff"/><text id="object-caption" x="0" y="-29" text-anchor="middle" font-size="11" font-weight="800" fill="#143044">LOGAM</text></g>
+              </g>
+              <g id="entry-glow" visibility="hidden"><circle cx="104" cy="197" r="27" fill="none" stroke="#61e7b2" stroke-width="3" opacity=".65"/></g>
+              <g id="class-glow" visibility="hidden"><circle cx="265" cy="197" r="29" fill="none" stroke="#ffc97b" stroke-width="3" opacity=".55"/></g>
+              <text x="25" y="331" class="svg-footer">S0 ENTRY     •     S1 METAL     •     S2 PLASTIC (IDEALIZED)     •     P1/P2 PUSHERS</text>
+              <text x="1015" y="331" text-anchor="end" class="svg-footer">NOT TO SCALE</text>
+            </svg>
+          </div>
+          <div class="stage-footer"><div class="stage-status"><span class="moving-indicator" id="motion-dot"></span><strong id="status-heading">Sistem siap</strong><span id="status-line">Tambahkan benda, lalu tekan MULAI.</span></div><div class="clock">SIM TIME <b id="clock">00:00.0</b></div></div>
+          <div class="flow-guide" aria-label="Tahapan proses sistem">
+            <div class="flow-guide-title"><span>LIVE OPERATING SEQUENCE</span><strong id="current-phase-label">READY TO SORT</strong></div>
+            <div class="flow-steps">
+              <div class="flow-step" data-phase="entry"><b>01</b><span>Sensor masuk</span></div>
+              <div class="flow-step" data-phase="classify"><b>02</b><span>Klasifikasi</span></div>
+              <div class="flow-step" data-phase="push"><b>03</b><span>Arahkan benda</span></div>
+              <div class="flow-step" data-phase="count"><b>04</b><span>Counter +1</span></div>
+            </div>
+          </div>
+          <div class="stage-legend"><span><i class="swatch sw-metal"></i> Logam</span><span><i class="swatch sw-plastic"></i> Plastik</span><span><i class="swatch sw-other"></i> Lainnya</span><span class="stage-note">Simulasi ideal • 1 benda diproses setiap saat</span></div>
+        </div>
+
+        <aside class="control-panel panel" id="kontrol">
+          <div class="section-kicker">02 / CONTROL CENTER</div><h2>Take control <span class="control-star">✳</span></h2><p class="control-intro">Kamu adalah operator mesin. Coba masukkan material dan jalankan sistem!</p>
+          <div class="machine-status"><span id="motor-light" class="motor-light"></span><div><strong id="motor-label">MOTOR OFFLINE</strong><small id="motor-desc">Conveyor berhenti</small></div><span class="machine-icon">⏻</span></div>
+          <div class="button-row"><button id="btn-start" type="button" class="btn btn-primary">▶ <span>MULAI</span></button><button id="btn-pause" type="button" class="btn btn-pause">Ⅱ <span>JEDA</span></button><button id="btn-reset" type="button" class="btn btn-quiet" title="Reset simulasi">↺</button></div>
+          <div class="divider-line"></div>
+          <div class="input-heading"><strong>Masukkan sampah</strong><span>INPUT / MANUAL</span></div>
+          <div class="material-buttons"><button type="button" data-add="metal" class="mat-btn mat-metal"><span class="mat-icon">⬡</span><strong>Logam</strong><kbd>1</kbd></button><button type="button" data-add="plastic" class="mat-btn mat-plastic"><span class="mat-icon">▰</span><strong>Plastik</strong><kbd>2</kbd></button><button type="button" data-add="other" class="mat-btn mat-other"><span class="mat-icon">◇</span><strong>Lainnya</strong><kbd>3</kbd></button></div>
+          <button type="button" id="btn-batch" class="btn btn-batch">✦ Tambahkan batch demo <span>+ 6 benda</span></button>
+          <div class="divider-line"></div>
+          <label class="switch-row" for="auto-toggle"><span><strong>Mode otomatis</strong><small>Material muncul secara acak</small></span><span class="switch"><input type="checkbox" id="auto-toggle"><span class="switch-track"></span></span></label>
+          <div class="slider-heading"><label for="speed-range">Kecepatan conveyor</label><strong><span id="speed-val">120</span> <small>px/s</small></strong></div>
+          <input id="speed-range" type="range" min="50" max="230" step="10" value="120" aria-label="Kecepatan conveyor" />
+          <div class="slider-limits"><span>SLOW · 50</span><span>230 · FAST</span></div>
+          <div class="queue-box"><div><span class="queue-symbol">⧉</span><span>Dalam antrean</span></div><strong id="queue-count">0</strong></div>
+          <p class="keyboard-tip">Tips: tekan <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> untuk memasukkan benda, <kbd>Spasi</kbd> untuk mulai/jeda.</p>
+        </aside>
+      </section>
+
+      <section class="bottom-grid">
+        <div class="panel sensors-panel" id="monitor"><div class="section-kicker">03 / LIVE I/O</div><div class="bottom-head"><h2>Sensor & actuator monitor</h2><span class="subtle-tag">VIRTUAL SIGNALS</span></div><p class="panel-desc">Indikator menyala ketika sensor virtual mendeteksi benda atau pendorong bekerja.</p><div class="sensor-grid" id="sensors">
+          <div class="sensor-chip" data-sensor="entry"><span class="sensor-led"></span><div><strong>S0 · ENTRY</strong><small>Sensor benda masuk</small></div></div>
+          <div class="sensor-chip" data-sensor="metal"><span class="sensor-led"></span><div><strong>S1 · METAL</strong><small>Sensor induktif</small></div></div>
+          <div class="sensor-chip" data-sensor="plastic"><span class="sensor-led"></span><div><strong>S2 · PLASTIC</strong><small>Indikator plastik ideal</small></div></div>
+          <div class="sensor-chip" data-sensor="out_metal"><span class="sensor-led"></span><div><strong>C1 · METAL</strong><small>Counter keluaran logam</small></div></div>
+          <div class="sensor-chip" data-sensor="out_plastic"><span class="sensor-led"></span><div><strong>C2 · PLASTIC</strong><small>Counter keluaran plastik</small></div></div>
+          <div class="sensor-chip" data-sensor="out_other"><span class="sensor-led"></span><div><strong>C3 · OTHER</strong><small>Counter keluaran lainnya</small></div></div>
+          <div class="sensor-chip" data-sensor="servo_metal"><span class="sensor-led"></span><div><strong>P1 · SERVO</strong><small>Pendorong logam</small></div></div>
+          <div class="sensor-chip" data-sensor="servo_plastic"><span class="sensor-led"></span><div><strong>P2 · SERVO</strong><small>Pendorong plastik</small></div></div>
+        </div></div>
+        <div class="panel activity-panel" id="aktivitas"><div class="section-kicker">04 / EVENT STREAM</div><div class="bottom-head"><h2>Aktivitas terbaru</h2><button type="button" id="btn-csv" class="export-btn" title="Ekspor riwayat sebagai CSV">↓ CSV</button></div><p class="panel-desc">Riwayat perubahan status simulasi secara real-time.</p><ol class="event-list" id="event-list" aria-label="Riwayat aktivitas"></ol><div class="mission"><div class="mission-top"><span>✧ MINI MISSION</span><b id="mission-text">0 / 5</b></div><p id="mission-copy">Sortir 5 benda untuk menyelesaikan misi pertama!</p><div class="mission-track"><div id="mission-progress"></div></div></div></div>
+      </section>
+      <footer class="site-footer"><span>© TRIWISE LAB — Smart Waste Sorting & Monitoring System</span><span>SIMULASI EDUKASI · BUKAN DATA SENSOR NYATA</span></footer>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <dialog id="reset-dialog" aria-labelledby="reset-title"><h3 id="reset-title">Reset simulasi?</h3><p>Semua counter, antrean, dan riwayat sesi ini akan dihapus.</p><div class="dialog-actions"><button id="btn-cancel-reset" type="button" class="btn btn-pause">Batal</button><button id="btn-confirm-reset" type="button" class="btn btn-danger">Ya, reset</button></div></dialog>
+</body>
+</html>
