@@ -1,0 +1,2 @@
+# TRIWISE-Smart-Triple-Waste-Sorting-Management-and-Monitoring-System
+TRIWISE merupakan prototipe sistem pemilahan sampah otomatis berbasis Internet of Things (IoT) yang dirancang untuk memisahkan material sampah ke dalam tiga kategori utama, yaitu logam, plastik, dan material lainnya. Sistem ini bertujuan untuk meningkatkan efisiensi proses pemilahan sampah, mengurangi ketergantungan terhadap pemilahan manual.
