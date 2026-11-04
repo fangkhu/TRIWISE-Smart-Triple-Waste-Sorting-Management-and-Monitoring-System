@@ -1,0 +1,26 @@
+﻿ID,Komponen,Parameter,Nilai awal,Satuan,Sumber kode,Kategori data,Catatan/interpretasi
+SIM-001,Conveyor virtual,Kecepatan awal,120,px/s,simulation/main.py; docs/script.js,Default program,Bukan cm/s motor fisik
+SIM-002,Conveyor virtual,Rentang slider kecepatan,50–230,px/s,simulation/main.py,Setting simulasi,Bukan rentang kecepatan motor fisik
+SIM-003,Posisi virtual,Titik benda masuk (ENTRY_X),104,px,simulation/main.py; docs/script.js,Koordinat UI,Bukan ukuran conveyor sesungguhnya
+SIM-004,Posisi virtual,Stasiun klasifikasi (CLASSIFIER_X),265,px,simulation/main.py; docs/script.js,Koordinat UI,Jarak dari entry 161 px
+SIM-005,Posisi virtual,Pendorong logam (METAL_PUSHER_X),465,px,simulation/main.py; docs/script.js,Koordinat UI,Jarak entry→pendorong 361 px
+SIM-006,Posisi virtual,Pendorong plastik (PLASTIC_PUSHER_X),677,px,simulation/main.py; docs/script.js,Koordinat UI,Jarak entry→pendorong 573 px
+SIM-007,Posisi virtual,Keluaran lainnya (OTHER_EXIT_X),908,px,simulation/main.py; docs/script.js,Koordinat UI,Jarak entry→keluaran 804 px
+SIM-008,Posisi virtual,Belt Y,198,px,simulation/main.py; docs/script.js,Koordinat UI,Dasar animasi
+SIM-009,Posisi virtual,Keluaran logam Y,110,px,simulation/main.py; docs/script.js,Koordinat UI,Pendorong logam menggeser benda ke atas
+SIM-010,Posisi virtual,Keluaran plastik Y,282,px,simulation/main.py; docs/script.js,Koordinat UI,Pendorong plastik menggeser benda ke bawah
+SIM-011,Pendorong virtual,Faktor kecepatan dorong,1.65,x kecepatan conveyor,simulation/main.py; docs/script.js,Model simulasi,Tidak sama dengan torsi/kecepatan servo nyata
+SIM-012,Sensor virtual,Lama indikator menyala,0.65,s,simulation/main.py; docs/script.js,Model simulasi,Tidak sama dengan waktu respons sensor fisik
+SIM-013,Antrean,Jeda antar benda selesai,0.3,s,simulation/main.py; docs/script.js,Model simulasi,Satu benda aktif pada satu waktu
+SIM-014,Antrean,Interval mode acak,1.0,s,simulation/main.py; docs/script.js,Model simulasi,Bergantung status antrean
+FW-001,Motor ESP32,Duty cycle default motor,65,%,firmware/esp32/settings.py,Setting awal firmware,Belum dipasang dan dikalibrasi
+FW-002,Servo ESP32,Sudut rumah logam/plastik,90,derajat,firmware/esp32/settings.py,Setting awal firmware,Harus diuji tanpa beban saat hardware tersedia
+FW-003,Servo ESP32,Sudut dorong logam/plastik,125,derajat,firmware/esp32/settings.py,Setting awal firmware,Harus disesuaikan posisi mekanik
+FW-004,Sensor ESP32,Debounce,45,ms,firmware/esp32/settings.py,Setting awal firmware,Belum diuji dari sinyal sensor
+FW-005,Sensor ESP32,Jendela pemindaian,300,ms,firmware/esp32/settings.py,Setting awal firmware,Belum dikalibrasi
+FW-006,Waktu conveyor,Sensor→pendorong logam,700,ms,firmware/esp32/settings.py,Setting awal firmware,Bergantung jarak dan kecepatan aktual
+FW-007,Waktu conveyor,Sensor→pendorong plastik,1300,ms,firmware/esp32/settings.py,Setting awal firmware,Bergantung jarak dan kecepatan aktual
+FW-008,Aktuator ESP32,Durasi pendorong,430,ms,firmware/esp32/settings.py,Setting awal firmware,Perlu uji transfer dan keamanan mekanik
+FW-009,Counter ESP32,Batas waktu menunggu sensor keluar,7000,ms,firmware/esp32/settings.py,Setting awal firmware,Belum divalidasi pada alat
+FW-010,Kontrol ESP32,Tunda loop utama,10,ms,firmware/esp32/settings.py,Setting awal firmware,Tidak menjamin loop tepat 10 ms
+FW-011,Sensor digital ESP32,Level input aktif,0,logika digital,firmware/esp32/settings.py,Konfigurasi aktif LOW,Input sensor harus aman 0–3.3 V

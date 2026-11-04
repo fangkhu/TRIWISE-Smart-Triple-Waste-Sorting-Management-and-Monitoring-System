@@ -1,0 +1,17 @@
+﻿ID,Komponen diuji,Rencana kondisi uji,Besaran yang dicatat,Nilai hasil ukur,Tanggal uji,Satuan,Rekomendasi ulangan,Status,Catatan kritis
+CAL-01,Sensor benda masuk,Benda melintas; uji benda terdekat/terjauh,Tingkat terbaca vs tidak; latensi; false trigger,,,ms; %,10 per jarak,Belum diuji,Jangan anggap pembacaan virtual sebagai hasil sensor
+CAL-02,Induktif logam,Uji besi dan aluminium pada beberapa jarak,Batas jarak deteksi per jenis logam; FN/FP,,,mm; jumlah,10 per material/jarak,Belum diuji,Karakteristik tiap logam berbeda
+CAL-03,Kapasitif sebagai proksi plastik,"Uji plastik, kertas, kaca, logam, karton kering",Respons per material; confusion matrix,,,deteksi biner; %,10 per material,Belum diuji,Sensor kapasitif tidak spesifik mengenali plastik
+CAL-04,Sensor counter logam,Lewatkan benda logam ke jalur keluaran,Hitungan terukur vs jumlah aktual; hitungan ganda,,,benda; %,10–20 benda,Belum diuji,Counter sesudah benar-benar tiba di wadah
+CAL-05,Sensor counter plastik,Lewatkan benda plastik ke jalur keluaran,Hitungan terukur vs jumlah aktual; hitungan ganda,,,benda; %,10–20 benda,Belum diuji,Counter sesudah benar-benar tiba di wadah
+CAL-06,Sensor counter lainnya,Lewatkan material lainnya ke ujung conveyor,Hitungan terukur vs jumlah aktual; hitungan ganda,,,benda; %,10–20 benda,Belum diuji,Tidak ada aktuator pendorong untuk lainnya
+CAL-07,Motor + conveyor,Uji beberapa pengaturan PWM motor,Kecepatan linier dan kestabilan,,,cm/s; %,3–5 ulangan,Belum diuji,PWM bukan satuan kecepatan fisik
+CAL-08,Waktu tempuh logam,Dari posisi klasifikasi sampai pendorong logam,Rata-rata dan simpangan waktu tempuh,,,ms,10 benda,Belum diuji,Nilai 700 ms di firmware hanya perkiraan
+CAL-09,Waktu tempuh plastik,Dari posisi klasifikasi sampai pendorong plastik,Rata-rata dan simpangan waktu tempuh,,,ms,10 benda,Belum diuji,Nilai 1300 ms di firmware hanya perkiraan
+CAL-10,Servo logam,"Sudut rumah/dorong dan durasi, tanpa beban lalu beban ringan",Sudut yang aman; keberhasilan masuk wadah,,,derajat; ms; %,10 benda,Belum diuji,Sudut 90→125 derajat hanya konfigurasi awal
+CAL-11,Servo plastik,"Sudut rumah/dorong dan durasi, tanpa beban lalu beban ringan",Sudut yang aman; keberhasilan masuk wadah,,,derajat; ms; %,10 benda,Belum diuji,Sudut 90→125 derajat hanya konfigurasi awal
+CAL-12,Pengendali Start/Stop,"Mulai, hentikan, dan jalankan ulang",Tidak ada gerakan tidak disengaja,,,lulus/gagal,5 siklus,Belum diuji,Prioritas keamanan mekanik
+CAL-13,Catu daya dan logika,Monitor tegangan logic dan catu aktuator saat operasi,Stabilitas suplai; gangguan reset,,,V; kejadian,3–5 siklus,Belum diuji,Pastikan level sinyal sensor tidak melampaui 3.3 V
+CAL-14,Wi-Fi dan dashboard,Pantau counter saat 3 jenis benda dipilah,Konsistensi data; latensi tampilan,,,ms; jumlah,10 kiriman,Belum diuji,Dashboard sekarang memakai data virtual
+CAL-15,Akurasi klasifikasi keseluruhan,Uji sampel campuran dengan label ground truth,Akurasi dan confusion matrix,,,%,≥10 per kategori,Belum diuji,"Gunakan data nyata, bukan label ideal dari simulasi"
+CAL-16,Keberhasilan sortir fisik,Jumlah sampah masuk dan yang benar masuk tiap wadah,Persentase berhasil & waktu per benda,,,%; s,≥10 per kategori,Belum diuji,Pisahkan salah deteksi dari salah dorong

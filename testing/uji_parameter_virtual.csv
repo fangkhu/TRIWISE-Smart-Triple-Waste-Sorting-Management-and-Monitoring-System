@@ -1,0 +1,10 @@
+﻿ID,Tanggal uji,Kecepatan virtual (px/s),Kategori sampel,Induktif virtual (1=ON),Proksi plastik virtual (1=ON),Respon pendorong virtual,Counter bertambah,Jumlah terhitung,Durasi dari spawn ke wadah virtual (s),Status,Batasan ilmiah
+VRT-01,2026-11-03,50,metal,1,0,Servo logam -> wadah logam,metal,1,8.32,LULUS,Respons sensor berasal dari label ideal pada kode; waktu dalam dunia virtual
+VRT-02,2026-11-03,50,plastic,0,1,Servo plastik -> wadah plastik,plastic,1,12.52,LULUS,Respons sensor berasal dari label ideal pada kode; waktu dalam dunia virtual
+VRT-03,2026-11-03,50,other,0,0,Tanpa servo -> ujung conveyor,other,1,16.08,LULUS,Respons sensor berasal dari label ideal pada kode; waktu dalam dunia virtual
+VRT-04,2026-11-03,120,metal,1,0,Servo logam -> wadah logam,metal,1,3.52,LULUS,Respons sensor berasal dari label ideal pada kode; waktu dalam dunia virtual
+VRT-05,2026-11-03,120,plastic,0,1,Servo plastik -> wadah plastik,plastic,1,5.24,LULUS,Respons sensor berasal dari label ideal pada kode; waktu dalam dunia virtual
+VRT-06,2026-11-03,120,other,0,0,Tanpa servo -> ujung conveyor,other,1,6.72,LULUS,Respons sensor berasal dari label ideal pada kode; waktu dalam dunia virtual
+VRT-07,2026-11-03,230,metal,1,0,Servo logam -> wadah logam,metal,1,1.84,LULUS,Respons sensor berasal dari label ideal pada kode; waktu dalam dunia virtual
+VRT-08,2026-11-03,230,plastic,0,1,Servo plastik -> wadah plastik,plastic,1,2.76,LULUS,Respons sensor berasal dari label ideal pada kode; waktu dalam dunia virtual
+VRT-09,2026-11-03,230,other,0,0,Tanpa servo -> ujung conveyor,other,1,3.52,LULUS,Respons sensor berasal dari label ideal pada kode; waktu dalam dunia virtual
